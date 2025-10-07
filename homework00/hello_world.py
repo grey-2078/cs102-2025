@@ -1,4 +1,3 @@
-m = "message"
 def text():
-    message = m
+    message = "message"
     return message
