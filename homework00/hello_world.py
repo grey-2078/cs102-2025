@@ -5,4 +5,5 @@ message = input()
 def text(message):
     """возвращает записанный в функцию текст"""
     return message
+"""выводит значение функции"""
 print(text(message))
