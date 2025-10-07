@@ -1,9 +1,4 @@
-"""
-код выводит заданный в переменную message текст через функцию text
-"""
-message = input()
-def text(message):
-    """возвращает записанный в функцию текст"""
+m = input()
+def text():
+    message = m
     return message
-"""выводит значение функции"""
-print(text(message))
