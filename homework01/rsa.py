@@ -1,3 +1,4 @@
+import math
 import random
 import typing as tp
 
@@ -31,21 +32,24 @@ def gcd(a: int, b: int) -> int:
     >>> gcd(3, 7)
     1
     """
-    # PUT YOUR CODE HERE
-    pass
+    result = math.gcd(a, b)
+    return result
 
 
-# def multiplicative_inverse(e: int, phi: int) -> int:
-#     """
-#     Euclid's extended algorithm for finding the multiplicative
-#     inverse of two numbers.
-#     >>> multiplicative_inverse(7, 40)
-#     23
-#     """
-#     # PUT YOUR CODE HERE
-#     pass
-#
-#
+def multiplicative_inverse(e: int, phi: int) -> int:
+    """
+    Euclid's extended algorithm for finding the multiplicative
+    inverse of two numbers.
+    >>> multiplicative_inverse(7, 40)
+    23
+    """
+    if e == 0:
+        return phi, 0, 1
+    else:
+        gcd, x, y = multiplicative_inverse(phi % e, e)
+        return gcd, y - (phi // e) * x, x
+print(multiplicative_inverse(0, 40))
+
 # def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
 #     if not (is_prime(p) and is_prime(q)):
 #         raise ValueError("Both numbers must be prime.")
