@@ -28,14 +28,16 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     for i in range(len(plaintext)):
         char = plaintext[i]
         if char.isupper():
-            encrypted_char = chr((ord(char) + ord(keyword[i]) - 2 * ord('A')) % 26 + ord('A'))
+            encrypted_char = chr((ord(char) + ord(keyword[i]) - 2 * ord("A")) % 26 + ord("A"))
         elif char.islower():
-            encrypted_char = chr((ord(char) + ord(keyword[i]) - 2 * ord('a')) % 26 + ord('a'))
+            encrypted_char = chr((ord(char) + ord(keyword[i]) - 2 * ord("a")) % 26 + ord("a"))
         else:
             encrypted_char = char
         ciphertext += encrypted_char
 
     return ciphertext
+
+
 print(encrypt_vigenere("itmo", "itmo"))
 
 
@@ -54,11 +56,13 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     for i in range(len(ciphertext)):
         char = ciphertext[i]
         if char.isupper():
-            decrypted_char = chr((ord(char) - ord(keyword[i]) + 26) % 26 + ord('A'))
+            decrypted_char = chr((ord(char) - ord(keyword[i]) + 26) % 26 + ord("A"))
         elif char.islower():
-            decrypted_char = chr((ord(char) - ord(keyword[i]) + 26) % 26 + ord('a'))
+            decrypted_char = chr((ord(char) - ord(keyword[i]) + 26) % 26 + ord("a"))
         else:
             decrypted_char = char
         plaintext += decrypted_char
     return plaintext
+
+
 print(decrypt_vigenere("PYTHON", "ATTACKATDAWN"))
