@@ -80,9 +80,7 @@ def make_step(grid: list[list[str | int]], k: int) -> list[list[str | int]]:
     return grid
 
 
-def shortest_path(
-    grid: list[list[str | int]], exit_coord: tuple[int, int]
-) -> tuple[int, int] | list[tuple[int, int]] | None:
+def shortest_path(grid: list[list[str | int]], exit_coord: tuple[int, int]) -> tuple[int, int] | list[tuple[int, int]] | None:
     """Once the numbers have been filled in, find the shortest path"""
     rows = len(grid)
     cols = len(grid[0])
@@ -157,9 +155,7 @@ def solve_maze(
     return grid, path
 
 
-def add_path_to_grid(
-    grid: list[list[str | int]], path: tuple[int, int] | list[tuple[int, int]] | None
-) -> list[list[str | int]]:
+def add_path_to_grid(grid: list[list[str | int]], path: tuple[int, int] | list[tuple[int, int]] | None) -> list[list[str | int]]:
     if path:
         for y, row in enumerate(grid):
             for x, _ in enumerate(row):
