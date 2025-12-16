@@ -15,6 +15,7 @@ class GameOfLife:
         self,
         size: tp.Tuple[int, int],
         randomize: bool = True,
+        new_param: bool,
         max_generations: tp.Optional[float] = float("inf"),
     ) -> None:
         # Размер клеточного поля
