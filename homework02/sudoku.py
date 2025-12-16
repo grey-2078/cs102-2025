@@ -1,20 +1,15 @@
 import pathlib
 import typing as tp
 
-
 T = tp.TypeVar("T")
 
 
 def display(grid: tp.List[tp.List[str]]) -> None:
-    """Вывод Судоку """
+    """Вывод Судоку"""
     width = 2
     line = "+".join(["-" * (width * 3)] * 3)
     for row in range(9):
-        print(
-            "".join(
-                grid[row][col].center(width) + ("|" if str(col) in "25" else "") for col in range(9)
-            )
-        )
+        print("".join(grid[row][col].center(width) + ("|" if str(col) in "25" else "") for col in range(9)))
         if str(row) in "25":
             print(line)
     print()
@@ -29,7 +24,7 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    result = [values[i:i + n] for i in range(0, len(values), n)]
+    result = [values[i : i + n] for i in range(0, len(values), n)]
     return result
 
 
@@ -40,7 +35,7 @@ def create_grid(puzzle: str) -> tp.List[tp.List[str]]:
 
 
 def read_sudoku(path: tp.Union[str, pathlib.Path]) -> tp.List[tp.List[str]]:
-    """ Прочитать Судоку из указанного файла """
+    """Прочитать Судоку из указанного файла"""
     path = pathlib.Path(path)
     with open(f"{path}") as f:
         puzzle = f.read()
@@ -48,7 +43,7 @@ def read_sudoku(path: tp.Union[str, pathlib.Path]) -> tp.List[tp.List[str]]:
 
 
 def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
-    """ Возвращает все значения для номера строки, указанной в pos
+    """Возвращает все значения для номера строки, указанной в pos
 
     >>> get_row([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']], (0, 0))
     ['1', '2', '.']
@@ -62,7 +57,7 @@ def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
 
 
 def get_col(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
-    """ Возвращает все значения для номера столбца, указанного в pos
+    """Возвращает все значения для номера столбца, указанного в pos
 
     >>> get_col([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']], (0, 0))
     ['1', '4', '7']
@@ -87,7 +82,7 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    grid = read_sudoku('puzzle1.txt')
+    grid = read_sudoku("puzzle1.txt")
     row_start = (pos[0] // 3) * 3
     col_start = (pos[1] // 3) * 3
 
@@ -109,12 +104,12 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
     """
     for x in range(len(grid)):
         for y in range(len(grid[x])):
-            if grid[x][y] == '.':
+            if grid[x][y] == ".":
                 return (x, y)
 
 
 def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.Set[str]:
-    """ Вернуть множество всех возможных значения для указанной позиции
+    """Вернуть множество всех возможных значения для указанной позиции
 
     >>> grid = read_sudoku('puzzle1.txt')
     >>> values = find_possible_values(grid, (0,2))
@@ -133,7 +128,7 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
 
 
 def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
-    """ Поиск решения для указанного пазла.
+    """Поиск решения для указанного пазла.
 
     Как решать Судоку?
     1. Найти свободную позицию
@@ -159,11 +154,5 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
 
         if solve(grid) is not None:
             return grid
-        grid[row][col] = '.'
+        grid[row][col] = "."
     return None
-
-        
-
-
-
-
